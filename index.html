@@ -95,35 +95,44 @@
         const unlockBtn = document.getElementById('unlock-btn');
         const errorMsg = document.getElementById('error-msg');
     
-        // Función de login (compatible con Live Server)
+        // Función de login mejorada para Vercel
         function checkPassword() {
             if (passwordInput.value === CLAVE_CORRECTA) {
-                // Usamos sessionStorage como alternativa
-                sessionStorage.setItem('appUnlocked', 'true');
+                // Usamos cookies como alternativa universal
+                document.cookie = "appUnlocked=true; max-age=86400; path=/"; // 24 horas
                 loginScreen.classList.add('hidden');
                 appContent.classList.remove('hidden');
                 errorMsg.style.display = 'none';
+                
+                // Debug
+                console.log("Clave correcta. App desbloqueada.");
             } else {
                 errorMsg.style.display = 'block';
                 passwordInput.value = '';
                 passwordInput.focus();
+                console.log("Clave incorrecta");
             }
         }
     
         // Verificar autenticación al cargar
-        if (sessionStorage.getItem('appUnlocked') === 'true') {
-            loginScreen.classList.add('hidden');
-            appContent.classList.remove('hidden');
+        function checkAuth() {
+            const cookies = document.cookie.split(';').map(c => c.trim());
+            if (cookies.includes("appUnlocked=true")) {
+                loginScreen.classList.add('hidden');
+                appContent.classList.remove('hidden');
+                console.log("Sesión ya activa");
+            }
         }
     
-        // Event listeners
+        // Inicialización
+        checkAuth();
         unlockBtn.addEventListener('click', checkPassword);
         passwordInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') checkPassword();
         });
     
-        // Debug: Verifica que el script se ejecuta
-        console.log("Script cargado correctamente");
+        // Debug
+        console.log("Script inicializado. Esperando interacción...");
     </script>
 </body>
 </html>
