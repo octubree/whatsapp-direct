@@ -85,54 +85,62 @@
     </div>
 
     <script>
-        // Configuración (¡Cambia esto!)
-        const CLAVE_CORRECTA = "1234";  // Reemplaza con tu clave
+        // Configuración
+        const CLAVE_CORRECTA = "1234"; // ¡Cámbiala por tu clave real!
     
-        // Elementos del DOM
+        // Elementos DOM
         const loginScreen = document.getElementById('login-screen');
         const appContent = document.getElementById('app-content');
         const passwordInput = document.getElementById('password');
         const unlockBtn = document.getElementById('unlock-btn');
         const errorMsg = document.getElementById('error-msg');
     
-        // Función de login mejorada para Vercel
-        function checkPassword() {
+        // 1. Sistema de autenticación mejorado para Vercel
+        function handleLogin() {
             if (passwordInput.value === CLAVE_CORRECTA) {
-                // Usamos cookies como alternativa universal
-                document.cookie = "appUnlocked=true; max-age=86400; path=/"; // 24 horas
+                // Método 1: Usar hash en la URL (funciona siempre)
+                window.location.hash = "unlocked";
+                
+                // Método 2: Cookie de respaldo
+                document.cookie = "appAuth=true; max-age=3600; path=/"; // 1 hora
+                
+                // Ocultar login y mostrar app
                 loginScreen.classList.add('hidden');
                 appContent.classList.remove('hidden');
-                errorMsg.style.display = 'none';
                 
-                // Debug
-                console.log("Clave correcta. App desbloqueada.");
+                console.log("Autenticación exitosa");
             } else {
                 errorMsg.style.display = 'block';
                 passwordInput.value = '';
-                passwordInput.focus();
                 console.log("Clave incorrecta");
             }
         }
     
-        // Verificar autenticación al cargar
+        // 2. Verificar autenticación al cargar
         function checkAuth() {
-            const cookies = document.cookie.split(';').map(c => c.trim());
-            if (cookies.includes("appUnlocked=true")) {
+            // Verificar hash URL
+            if (window.location.hash === "#unlocked") {
                 loginScreen.classList.add('hidden');
                 appContent.classList.remove('hidden');
-                console.log("Sesión ya activa");
+                return;
+            }
+            
+            // Verificar cookie
+            if (document.cookie.split(';').some(c => c.trim() === 'appAuth=true')) {
+                loginScreen.classList.add('hidden');
+                appContent.classList.remove('hidden');
             }
         }
     
-        // Inicialización
-        checkAuth();
-        unlockBtn.addEventListener('click', checkPassword);
+        // 3. Event listeners
+        unlockBtn.addEventListener('click', handleLogin);
         passwordInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') checkPassword();
+            if (e.key === 'Enter') handleLogin();
         });
     
-        // Debug
-        console.log("Script inicializado. Esperando interacción...");
+        // Inicialización
+        checkAuth();
+        console.log("App inicializada. Esperando autenticación...");
     </script>
 </body>
 </html>
