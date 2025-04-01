@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhatsApp Directo</title>
     <style>
-        /* Pantalla de login */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+        }
         #login-screen {
             position: fixed;
             top: 0;
@@ -19,22 +22,31 @@
             align-items: center;
             z-index: 1000;
             color: white;
+            text-align: center;
         }
         #login-form {
             background: white;
-            padding: 20px;
+            padding: 30px; /* Aumentado padding */
             border-radius: 10px;
-            text-align: center;
             color: #333;
-            width: 80%;
-            max-width: 300px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%; /* Un poco más ancho en móviles */
+            max-width: 320px; /* Ligeramente más grande */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
         }
+        #login-form h2 {
+            margin-top: 0;
+            color: #128C7E; /* Color título */
+        }
+         #login-form p {
+            margin-bottom: 15px;
+            color: #555; /* Color texto */
+         }
         #password {
+            box-sizing: border-box; /* Incluir padding y border en el width */
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 2px solid #ddd;
+            padding: 12px; /* Más padding */
+            margin-bottom: 15px; /* Espacio antes del botón */
+            border: 1px solid #ccc; /* Borde más sutil */
             border-radius: 5px;
             font-size: 16px;
         }
@@ -42,33 +54,57 @@
             background: #128C7E;
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 12px 15px; /* Más padding */
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
             width: 100%;
-            transition: background 0.3s;
+            transition: background 0.3s ease; /* Transición suave */
         }
         #unlock-btn:hover {
             background: #075E54;
         }
         .hidden {
-            display: none;
+            display: none !important; /* Añadido !important por si acaso */
         }
         #error-msg {
             color: red;
-            margin-top: 10px;
-            display: none;
+            margin-top: 15px; /* Más espacio */
+            display: none; /* Oculto por defecto */
+            font-weight: bold;
         }
+
+        /* Estilos básicos para el contenido de la app (opcional) */
+        #app-content {
+            padding: 20px;
+            text-align: center;
+        }
+        #app-content input[type="tel"] {
+             padding: 10px;
+             margin-right: 10px;
+             border: 1px solid #ccc;
+             border-radius: 5px;
+        }
+         #app-content button {
+             padding: 10px 15px;
+             background-color: #25D366;
+             color: white;
+             border: none;
+             border-radius: 5px;
+             cursor: pointer;
+         }
+         #app-content button:hover {
+             background-color: #128C7E;
+         }
     </style>
 </head>
 <body>
-    <!-- Pantalla de login (Línea 54 está aquí) -->
+    <!-- Pantalla de login -->
     <div id="login-screen">
         <div id="login-form">
             <h2>🔒 Acceso Privado</h2>
             <p>Ingresa tu clave personal</p>
-            <input type="password" id="password" placeholder="Clave" autocomplete="off">
+            <input type="password" id="password" placeholder="Clave" autocomplete="current-password"> <!-- autocomplete="current-password" es más semántico -->
             <button id="unlock-btn">Desbloquear</button>
             <p id="error-msg">Clave incorrecta. Intenta de nuevo.</p>
         </div>
@@ -77,70 +113,142 @@
     <!-- Contenido de la app -->
     <div id="app-content" class="hidden">
         <!-- ********************************** -->
-        <!-- AQUÍ PEGA TU CÓDIGO ACTUAL DE WHATSAPP -->
-        <!-- ********************************** -->
+        <!-- ASEGÚRATE DE QUE EL CÓDIGO QUE PEGUES AQUÍ NO TENGA ERRORES -->
+        <!-- Código de ejemplo básico: -->
         <h1>WhatsApp Directo</h1>
-        <input type="tel" id="phoneNumber" placeholder="Ej: 98765432">
+        <input type="tel" id="phoneNumber" placeholder="Ej: 51987654321"> <!-- Incluir código país si es necesario -->
         <button id="sendButton">Abrir Chat</button>
+        <p style="margin-top:20px; font-size: small; color: grey;">App Desbloqueada</p>
+        <!-- ********************************** -->
     </div>
 
     <script>
         // Configuración
         const CLAVE_CORRECTA = "1234"; // ¡Cámbiala por tu clave real!
-    
+
         // Elementos DOM
         const loginScreen = document.getElementById('login-screen');
         const appContent = document.getElementById('app-content');
         const passwordInput = document.getElementById('password');
         const unlockBtn = document.getElementById('unlock-btn');
         const errorMsg = document.getElementById('error-msg');
-    
-        // 1. Sistema de autenticación mejorado para Vercel
-        function handleLogin() {
-            if (passwordInput.value === CLAVE_CORRECTA) {
-                // Método 1: Usar hash en la URL (funciona siempre)
-                window.location.hash = "unlocked";
-                
-                // Método 2: Cookie de respaldo
-                document.cookie = "appAuth=true; max-age=3600; path=/"; // 1 hora
-                
-                // Ocultar login y mostrar app
-                loginScreen.classList.add('hidden');
-                appContent.classList.remove('hidden');
-                
-                console.log("Autenticación exitosa");
-            } else {
-                errorMsg.style.display = 'block';
-                passwordInput.value = '';
-                console.log("Clave incorrecta");
+
+        // Asegurarse de que los elementos existen antes de usarlos
+        if (!loginScreen || !appContent || !passwordInput || !unlockBtn || !errorMsg) {
+            console.error("Error crítico: No se encontraron todos los elementos del DOM necesarios.");
+            alert("Error al cargar la página. Faltan elementos.");
+        } else {
+            // 1. Sistema de autenticación mejorado para Vercel
+            function handleLogin() {
+                console.log("Botón Desbloquear presionado."); // Log 1
+                errorMsg.style.display = 'none'; // Ocultar mensaje de error previo
+
+                if (passwordInput.value === CLAVE_CORRECTA) {
+                    console.log("Contraseña CORRECTA. Procediendo a desbloquear..."); // Log 2
+
+                    try {
+                        // Método 1: Usar hash en la URL (funciona siempre)
+                        window.location.hash = "unlocked";
+                        console.log("Hash URL establecido a #unlocked."); // Log 3
+
+                        // Método 2: Cookie de respaldo (con SameSite=Lax para navegadores modernos)
+                        document.cookie = "appAuth=true; max-age=3600; path=/; SameSite=Lax"; // 1 hora
+                        console.log("Cookie 'appAuth=true' establecida."); // Log 4
+
+                        // Ocultar login y mostrar app
+                        loginScreen.classList.add('hidden');
+                        appContent.classList.remove('hidden');
+                        console.log("Pantalla de login oculta, contenido de app mostrado."); // Log 5
+
+                        // Opcional: Limpiar campo de contraseña después de éxito
+                        // passwordInput.value = '';
+
+                    } catch (error) {
+                         console.error("Error durante el proceso de desbloqueo:", error);
+                         alert("Ocurrió un error al intentar desbloquear la aplicación.");
+                    }
+
+                } else {
+                    console.warn("Contraseña INCORRECTA."); // Log 6 (Warn)
+                    errorMsg.style.display = 'block'; // Mostrar mensaje de error
+                    passwordInput.focus(); // Poner el foco de nuevo en el input
+                    passwordInput.select(); // Seleccionar el texto para fácil reemplazo
+                }
             }
+
+            // 2. Verificar autenticación al cargar la página
+            function checkAuth() {
+                console.log("Verificando autenticación al cargar..."); // Log 7
+                let isAuthenticated = false;
+
+                // Verificar hash URL
+                if (window.location.hash === "#unlocked") {
+                    console.log("Autenticado vía Hash URL."); // Log 8
+                    isAuthenticated = true;
+                } else {
+                    // Verificar cookie si el hash no está
+                    if (document.cookie.split(';').some(c => c.trim().startsWith('appAuth=true'))) {
+                       console.log("Autenticado vía Cookie."); // Log 9
+                       isAuthenticated = true;
+                    }
+                }
+
+                if (isAuthenticated) {
+                    loginScreen.classList.add('hidden');
+                    appContent.classList.remove('hidden');
+                    console.log("Acceso concedido al cargar página."); // Log 10
+                } else {
+                    console.log("No autenticado al cargar. Mostrando login."); // Log 11
+                    loginScreen.classList.remove('hidden'); // Asegurarse que el login esté visible si no hay auth
+                    appContent.classList.add('hidden'); // Asegurarse que la app esté oculta
+                }
+            }
+
+            // 3. Event listeners
+            unlockBtn.addEventListener('click', handleLogin);
+            passwordInput.addEventListener('keypress', (e) => {
+                // Ocultar error al empezar a escribir de nuevo
+                if (errorMsg.style.display === 'block') {
+                    errorMsg.style.display = 'none';
+                }
+                // Permitir login con Enter
+                if (e.key === 'Enter') {
+                    handleLogin();
+                }
+            });
+
+            // Inicialización
+            checkAuth(); // Verificar auth al inicio
+            console.log("App inicializada. Estado de autenticación verificado."); // Log 12
         }
-    
-        // 2. Verificar autenticación al cargar
-        function checkAuth() {
-            // Verificar hash URL
-            if (window.location.hash === "#unlocked") {
-                loginScreen.classList.add('hidden');
-                appContent.classList.remove('hidden');
-                return;
-            }
-            
-            // Verificar cookie
-            if (document.cookie.split(';').some(c => c.trim() === 'appAuth=true')) {
-                loginScreen.classList.add('hidden');
-                appContent.classList.remove('hidden');
-            }
+
+        // Aquí iría la lógica JS específica de tu app WhatsApp Directo
+        // (la que maneja phoneNumber y sendButton), si la tienes separada.
+        // Ejemplo básico:
+        const phoneInput = document.getElementById('phoneNumber');
+        const sendBtn = document.getElementById('sendButton');
+
+        if(phoneInput && sendBtn) {
+            sendBtn.addEventListener('click', () => {
+                const phone = phoneInput.value.trim();
+                if (phone) {
+                    // Asume que el número ya incluye código de país si es necesario
+                    // O ajusta para añadirlo si no lo tiene. Ej: si es de Perú y tiene 9 dígitos:
+                    let fullPhone = phone;
+                    // if (phone.length === 9 && !phone.startsWith('51')) { // Ejemplo para Perú
+                    //     fullPhone = '51' + phone;
+                    // }
+                    const url = `https://wa.me/${fullPhone.replace(/[^0-9]/g, '')}`; // Limpia no números
+                    console.log("Abriendo chat:", url);
+                    window.open(url, '_blank');
+                } else {
+                    alert("Por favor, ingresa un número de teléfono.");
+                }
+            });
+        } else {
+             console.warn("No se encontraron los elementos de la app WhatsApp (phoneNumber, sendButton). Asegúrate de que estén en el HTML dentro de #app-content.");
         }
-    
-        // 3. Event listeners
-        unlockBtn.addEventListener('click', handleLogin);
-        passwordInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleLogin();
-        });
-    
-        // Inicialización
-        checkAuth();
-        console.log("App inicializada. Esperando autenticación...");
+
     </script>
 </body>
 </html>
