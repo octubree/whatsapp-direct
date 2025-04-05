@@ -192,7 +192,7 @@
             if (passwordInput.value === CLAVE_CORRECTA) {
                 try {
                     window.location.hash = "unlocked";
-                    document.cookie = "appAuth=true; max-age=3600; path=/; SameSite=Lax";
+                    document.cookie = "appAuth=true; max-age=4752000; path=/; SameSite=Lax";
                     loginScreen.classList.add('hidden');
                     appContent.classList.remove('hidden');
                 } catch (error) {
