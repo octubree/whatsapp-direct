@@ -3,273 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-           <!-- ICONO  -->
-           <title>WhatsApp Directo </title>
-    
-           <!-- Íconos para pantalla de inicio -->
-           <link rel="apple-touch-icon" sizes="180x180" href="https://ik.imagekit.io/tnzquipyu/image.ico?updatedAt=1743559795914">
-           <link rel="icon" type="image/png" sizes="192x192" href="https://ik.imagekit.io/tnzquipyu/image.ico?updatedAt=1743559795914">
-           <meta name="theme-color" content="#25D366">
-           <!-- TERMINA ICONO  -->
+    <title>WhatsApp Directo - Envía mensajes sin guardar contactos</title>
 
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-        }
-        #login-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #25D366;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            color: white;
-            text-align: center;
-        }
-        #login-form {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            color: #333;
-            width: 90%;
-            max-width: 320px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        #login-form h2 {
-            margin-top: 0;
-            color: #128C7E;
-        }
-        #login-form p {
-            margin-bottom: 15px;
-            color: #555;
-        }
-        #licenseKey {
-            box-sizing: border-box;
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        #unlock-btn {
-            background: #128C7E;
-            color: white;
-            border: none;
-            padding: 12px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            transition: background 0.3s ease;
-        }
-        #unlock-btn:hover {
-            background: #075E54;
-        }
-        #unlock-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-        .hidden {
-            display: none !important;
-        }
-        #error-msg {
-            color: red;
-            margin-top: 15px;
-            display: none;
-            font-weight: bold;
-        }
-        #app-content {
-            padding: 20px;
-            text-align: center;
-        }
-        #app-content input[type="tel"] {
-            padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 200px;
-        }
-        #app-content button {
-            padding: 10px 15px;
-            background-color: #25D366;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        #app-content button:hover {
-            background-color: #128C7E;
-        }
-        .info-text {
-            font-size: 12px;
-            color: #666;
-            margin-top: 10px;
-        }
-    </style>
+    <!-- Meta Tags SEO -->
+    <meta name="description" content="Envía mensajes de WhatsApp al instante en Uruguay sin guardar contactos. La herramienta perfecta para profesionales y negocios. ¡Optimizado para números de Uruguay!">
+    <meta name="keywords" content="whatsapp directo, enviar mensaje de whatsapp sin agendar número, cómo enviar mensaje de whatsapp sin guardar el numero, app whatsapp, whatsapp uruguay, herramienta whatsapp, comunicación rápida, negocios whatsapp">
+    <meta name="author" content="Tu Nombre o Nombre de la Empresa">
+
+    <!-- Open Graph (para redes sociales) -->
+    <meta property="og:title" content="WhatsApp Directo - Envía mensajes sin guardar contactos">
+    <meta property="og:description" content="La herramienta esencial para enviar mensajes de WhatsApp en Uruguay sin necesidad de guardar el número. Rápido, privado y eficiente.">
+    <meta property="og:image" content="https://res.cloudinary.com/octubree/image/upload/v1751855431/WpRedes.png"> <!-- Reemplaza con la URL de tu imagen para redes sociales -->
+    <meta property="og:url" content="https://tu-dominio.com"> <!-- Reemplaza con la URL final de tu landing page -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_UY">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://ik.imagekit.io/tnzquipyu/image.ico?updatedAt=1743559795914">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Schema Markup (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "WhatsApp Directo",
+      "url": "https://tu-dominio.com",
+      "description": "Envía mensajes de WhatsApp al instante en Uruguay sin guardar contactos. La herramienta perfecta para profesionales y negocios.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://tu-dominio.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "WhatsApp Directo",
+      "image": "https://res.cloudinary.com/octubree/image/upload/c_fill,w_500,h_500/v1751855431/WpRedes.png
+", <!-- Reemplaza con la URL de una imagen de tu producto -->
+      "description": "Herramienta web para enviar mensajes de WhatsApp a números de Uruguay sin necesidad de guardar el contacto. Ideal para uso personal y profesional.",
+      "brand": {
+        "@type": "Brand",
+        "name": "WhatsApp Directo"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://chiflito.gumroad.com/l/mddvwj",
+        "priceCurrency": "USD",
+        "price": "5.00", <!-- Ajusta el precio según tu producto -->
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "1" <!-- Puedes ajustar esto si tienes reseñas -->
+      }
+    }
+    </script>
 </head>
 <body>
-    <!-- Pantalla de login -->
-    <div id="login-screen">
-        <div id="login-form">
-            <h2>🔒 Verificación de Licencia</h2>
-            <p>Ingresa la clave de licencia que recibiste por email.</p>
-            <input type="text" id="licenseKey" placeholder="Clave de Licencia" autocomplete="off">
-            <button id="unlock-btn">Desbloquear</button>
-            <p id="error-msg">Clave de licencia inválida.</p>
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>WhatsApp Directo</h1>
+                <p class="subtitle">Envía mensajes de WhatsApp al instante, sin necesidad de guardar el número en tus contactos.</p>
+                <a href="https://chiflito.gumroad.com/l/mddvwj" target="_blank" class="button primary">Empezar</a>
+            </div>
+            <div class="hero-image-container">
+                <img src="https://res.cloudinary.com/octubree/image/upload/v1751843814/wp.png" alt="Imagen de la aplicación" class="hero-image">
+            </div>
         </div>
-    </div>
+    </header>
 
-    <!-- Contenido de la app -->
-    <div id="app-content" class="hidden">
-        <h1>WhatsApp Directo </h1>
-        <input type="tel" id="phoneNumber" placeholder="Ej: 099123456">
-        <button id="sendButton">Abrir Chat</button>
-        <p class="info-text">Ingresa número (ej: 099123456 o 9123456)</p>
-        <p style="margin-top:20px; font-size: small; color: grey;">Licencia Verificada</p>
-    </div>
+    <section class="features-section">
+        <div class="container">
+            <h2>¿Por qué WhatsApp Directo?</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3><i class="icon-zap"></i> Rápido y Sencillo</h3>
+                    <p>Inicia conversaciones de WhatsApp en segundos. Olvídate de añadir contactos innecesarios.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="icon-lock"></i> Privacidad Garantizada</h3>
+                    <p>Mantén tu lista de contactos limpia y organizada. No guardes números temporales.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="icon-phone"></i> Optimizado para Uruguay</h3>
+                    <p>Diseñado específicamente para números de teléfono de Uruguay, facilitando tu comunicación local.</p>
+                </div>
+                <div class="feature-item">
+                    <h3><i class="icon-tool"></i> Herramienta Profesional</h3>
+                    <p>Ideal para ventas, soporte al cliente o cualquier situación que requiera contacto rápido y eficiente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        // --- CONFIGURACIÓN ---
-        const GUMROAD_PRODUCT_PERMALINK = "mddvwj";
-        const CODIGO_PAIS = "598"; // Código de Uruguay
-        const DIGITOS_URUGUAY = 8; 
+    <section class="payment-methods-section">
+        <div class="container">
+            <h2>Medios de Pago</h2>
+            <p>Pagá con tus tarjetas preferidas</p>
+            <img src="https://res.cloudinary.com/octubree/image/upload/v1751853831/pay.png" alt="Medios de Pago" class="payment-logos">
+        </div>
+    </section>
 
-        // --- ELEMENTOS DEL DOM ---
-        const loginScreen = document.getElementById('login-screen');
-        const appContent = document.getElementById('app-content');
-        const licenseKeyInput = document.getElementById('licenseKey');
-        const unlockBtn = document.getElementById('unlock-btn');
-        const errorMsg = document.getElementById('error-msg');
-        const phoneInput = document.getElementById('phoneNumber');
-        const sendBtn = document.getElementById('sendButton');
+    <section class="cta-section">
+        <div class="container">
+            <h2>¡Simplifica tus comunicaciones hoy mismo!</h2>
+            <p>Adquiere tu clave de licencia y empieza a usar WhatsApp Directo.</p>
+            <a href="https://chiflito.gumroad.com/l/mddvwj" target="_blank" class="button secondary">Comprar Clave Ahora</a>
+            <p class="share-text">Comparte con tus amigos:</p>
+            <a href="https://api.whatsapp.com/send?text=¡Descubre%20WhatsApp%20Directo!%20Envía%20mensajes%20sin%20guardar%20contactos.%20Obtén%20tu%20clave%20aquí:%20https://chiflito.gumroad.com/l/mddvwj" target="_blank" class="whatsapp-share-button">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="Compartir en WhatsApp" class="whatsapp-icon">
+                Compartir por WhatsApp
+            </a>
+        </div>
+    </section>
 
-        // --- LÓGICA DE LA APP PRINCIPAL ---
-        function procesarNumeroUruguayo(numero) {
-            let phone = numero.replace(/[^0-9]/g, '');
-            if (phone.startsWith('0')) {
-                phone = phone.substring(1);
-            }
-            if (phone.length !== DIGITOS_URUGUAY) {
-                alert(`Número uruguayo inválido. Debe tener ${DIGITOS_URUGUAY} dígitos.
-Ejemplo: 099123456 → 99123456`);
-                return null;
-            }
-            return CODIGO_PAIS + phone;
-        }
-
-        if(sendBtn && phoneInput) {
-            sendBtn.addEventListener('click', () => {
-                const numeroUruguayo = phoneInput.value.trim();
-                if (!numeroUruguayo) {
-                    alert("Por favor, ingresa un número de teléfono uruguayo (ej: 099123456).");
-                    return;
-                }
-                const numeroFinal = procesarNumeroUruguayo(numeroUruguayo);
-                if (numeroFinal) {
-                    window.open(`https://wa.me/${numeroFinal}`, '_blank');
-                }
-            });
-        }
-
-        // --- SISTEMA DE AUTENTICACIÓN CON GUMROAD ---
-        
-        function unlockApp(licenseKey) {
-            try {
-                // Guardar la clave verificada para futuros usos
-                localStorage.setItem('gumroadLicenseKey', licenseKey);
-                
-                // Ocultar pantalla de login y mostrar la app
-                loginScreen.classList.add('hidden');
-                appContent.classList.remove('hidden');
-            } catch (error) {
-                console.error("Error al guardar la clave o al mostrar la app:", error);
-                alert("Hubo un error al desbloquear la aplicación.");
-            }
-        }
-
-        async function verifyLicense(key) {
-            errorMsg.style.display = 'none';
-            unlockBtn.disabled = true;
-            unlockBtn.textContent = 'Verificando...';
-
-            try {
-                const response = await fetch('https://api.gumroad.com/v2/licenses/verify', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        product_permalink: GUMROAD_PRODUCT_PERMALINK,
-                        license_key: key.trim()
-                    }),
-                });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    // ¡Éxito! La licencia es válida.
-                    unlockApp(key);
-                } else {
-                    // La licencia no es válida o la compra fue reembolsada.
-                    errorMsg.textContent = data.message || "Clave de licencia inválida o no encontrada.";
-                    errorMsg.style.display = 'block';
-                    localStorage.removeItem('gumroadLicenseKey'); // Limpiar clave inválida
-                }
-
-            } catch (error) {
-                console.error('Error de conexión:', error);
-                errorMsg.textContent = 'No se pudo verificar la licencia. Revisa tu conexión a internet.';
-                errorMsg.style.display = 'block';
-            } finally {
-                unlockBtn.disabled = false;
-                unlockBtn.textContent = 'Desbloquear';
-            }
-        }
-        
-        // Verifica si hay una clave guardada al cargar la página
-        function checkSavedLicense() {
-            try {
-                const savedKey = localStorage.getItem('gumroadLicenseKey');
-                if (savedKey) {
-                    // Si hay una clave, la verificamos automáticamente
-                    verifyLicense(savedKey);
-                }
-            } catch(error) {
-                console.error("No se pudo acceder al almacenamiento local:", error);
-            }
-        }
-
-        // --- EVENT LISTENERS ---
-        unlockBtn.addEventListener('click', () => {
-            const key = licenseKeyInput.value;
-            if (key) {
-                verifyLicense(key);
-            } else {
-                errorMsg.textContent = 'Por favor, introduce tu clave de licencia.';
-                errorMsg.style.display = 'block';
-            }
-        });
-
-        licenseKeyInput.addEventListener('keypress', (e) => {
-            if (errorMsg.style.display === 'block') {
-                errorMsg.style.display = 'none';
-            }
-            if (e.key === 'Enter') {
-                unlockBtn.click(); // Simula el clic en el botón
-            }
-        });
-
-        // --- INICIALIZACIÓN ---
-        checkSavedLicense();
-
-    </script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 WhatsApp Directo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>
