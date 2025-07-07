@@ -139,6 +139,7 @@
     <script>
         // --- CONFIGURACIÓN ---
         const GUMROAD_PRODUCT_PERMALINK = "gffgvj";
+        const GUMROAD_PRODUCT_ID = "M8GK7dTxzHWJoxPaKdorkw==";
         const CODIGO_PAIS = "598"; // Código de Uruguay
         const DIGITOS_URUGUAY = 8; 
         const REVERIFY_DAYS_BEFORE_EXPIRATION = 7; // Días antes de la expiración para forzar re-verificación con Gumroad
@@ -213,6 +214,7 @@
                     },
                     body: JSON.stringify({
                         product_permalink: GUMROAD_PRODUCT_PERMALINK,
+                        product_id: GUMROAD_PRODUCT_ID,
                         license_key: key.trim()
                     }),
                 });
